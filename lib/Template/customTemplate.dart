@@ -42,6 +42,7 @@ class TextIcon extends StatelessWidget {
   }
 }
 
+//List Tile
 class TemplateListTile extends StatelessWidget {
   const TemplateListTile({
     Key? key,
@@ -97,6 +98,7 @@ class TemplateListTile extends StatelessWidget {
   }
 }
 
+//Header
 class CustomHeaderTilte extends StatelessWidget {
   const CustomHeaderTilte({
     Key? key,
@@ -137,3 +139,90 @@ class CustomHeaderTilte extends StatelessWidget {
     );
   }
 }
+
+class FeatureBox extends StatelessWidget {
+  const FeatureBox({
+    Key? key,
+    this.size = 100,
+  }) : super(key: key);
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(4,4),
+            blurRadius: 20,
+            color: Color.fromRGBO(173, 173, 173, 100)
+          )
+        ]
+      ),
+    );
+  }
+}
+
+class FeatureLayout extends StatefulWidget {
+  const FeatureLayout({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+  final String title;
+  @override
+  State<FeatureLayout> createState() => _FeatureLayoutState();
+}
+
+class _FeatureLayoutState extends State<FeatureLayout> {
+  final mywidgetkey = GlobalKey();
+  Size textSize;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
+  }
+  getSizeAndPosition() {
+    RenderObject? _cardBox = mywidgetkey.currentContext?.findRenderObject();
+    textSize = _cardBox.;
+    setState(() {});
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("",
+                key: mywidgetkey,
+                style: GoogleFonts.lato(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+
+              Container(
+                height: 5,
+                color: Colors.orange,
+              )
+            ],
+
+          ),
+        ),
+        Column(
+          children: [],
+        )
+      ],
+    );
+  }
+}
+
+
+

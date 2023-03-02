@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mlapps/Template/customTemplate.dart';
 
-//App Bar
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
-    Key? key,
-    this.top = 60,
-  }) : super(key: key);
-  final double top;
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
+  const CustomAppBar({Key? key}) : super(key: key);
+  @override
+  Size get preferredSize => const Size.fromHeight(60);
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20,right: 20),
-      child: Stack(
-        children: [
-          //Drawer
-          GestureDetector(
-            child: Icon(Icons.menu,size: 40,),
-            onTap: (){
-              Scaffold.of(context).openDrawer();
-            },
-          ),
-          //Personal Infor
-          GestureDetector(
-            child: Icon(Icons.account_circle,size: 50,color: Colors.blue,),
-          )
-        ],
+    return AppBar(
+
+      elevation: 0,
+      backgroundColor: Colors.white,
+      actions: [
+        Icon(Icons.account_circle,color: Colors.cyan,size: 40,)
+      ],
+      leadingWidth: 70,
+      leading: GestureDetector(
+        child: Icon(
+          Icons.menu,size: 40,
+          color: Colors.black,
+        ),
+        onTap: () {
+          Scaffold.of(context).openDrawer();
+        },
       ),
     );
   }
 }
+
 
 class BottomLayout extends StatelessWidget {
   const BottomLayout({
@@ -45,12 +45,18 @@ class BottomLayout extends StatelessWidget {
     return Expanded(
       child: Container(
         width: double.infinity,
+        child: Column(
+          children: [
+            FeatureLayout(title: "Machine Learning Feature:")
+
+          ],
+        ),
         decoration: BoxDecoration(
           color: backgroundColor,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(borderRadius),
               topRight: Radius.circular(borderRadius),
-          )
+          ),
         ),
 
 

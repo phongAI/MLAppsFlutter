@@ -11,6 +11,7 @@ class application extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         drawer: CustomDrawer(),
+        appBar: CustomAppBar(),
         body: mainScreen(),
       ),
     );
@@ -33,18 +34,11 @@ class _mainScreenState extends State<mainScreen> {
         Stack(
           children: [
             Image.asset('assets/images/main_bg.png'),
-            Positioned(
-              top: 30,
-                child: CustomAppBar()
-            ),
           ],
         ),
         BottomLayout(
             backgroundColor: Colors.green
         ),
-        
-        
-
 
 
       ],
