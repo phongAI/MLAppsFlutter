@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mainScreenComponent.dart';
 import 'Template/customTemplate.dart';
+import 'Template/customWidget.dart';
 
 //Custom Drawer
 class CustomDrawer extends StatelessWidget {

@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mlapps/Template/customTemplate.dart';
@@ -45,11 +46,16 @@ class BottomLayout extends StatelessWidget {
     return Expanded(
       child: Container(
         width: double.infinity,
-        child: Column(
-          children: [
-            FeatureLayout(title: "Machine Learning Feature:")
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FeatureLayout(title: "ML Apps:"),
+              HorizontalFeatureLayout(title: "NLP Apps",)
 
-          ],
+
+            ],
+          ),
         ),
         decoration: BoxDecoration(
           color: backgroundColor,

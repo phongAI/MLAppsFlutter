@@ -1,102 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-//Text with Icon
-class TextIcon extends StatelessWidget {
-
-  const TextIcon(
-      {
-        Key? key,
-        this.space = 5,
-        required this.leadingIcon,
-        this.iconColor = Colors.white,
-        required this.text,
-        this.fontSize = 15,
-        this.textColor = Colors.white,
-        this.header = false
-      }
-      ) : super(key: key);
-  final double space;
-  final IconData leadingIcon;
-  final Color iconColor;
-  final text;
-  final double fontSize;
-  final textColor;
-  final bool header;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Icon(leadingIcon,color: iconColor,),
-        SizedBox(width: space,),
-        Text(text,
-          style: GoogleFonts.lato(
-              textStyle: TextStyle(color: textColor,
-                fontSize: fontSize,
-              )
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-//List Tile
-class TemplateListTile extends StatelessWidget {
-  const TemplateListTile({
-    Key? key,
-    this.title = "Image Classification",
-    this.leftPadding = 15,
-    this.minLeadingWidth = 0,
-    this.trailing = Icons.more_vert,
-    this.heading = true
-  }) : super(key: key);
-  final String title;
-  final double leftPadding;
-  final double minLeadingWidth;
-  final IconData trailing;
-  final heading;
-  @override
-  Widget build(BuildContext context) {
-    //Header
-    double fontSize = (heading) ? 18 : 16;
-
-    //Mapping
-    final Map<String, String> mapSubtitle = {
-      'Image Classification': 'Specify kind of object via image',
-      'Object Detection': 'Detect and localize multiple objects',
-      'Pose Estimation': 'Identify the joints in human body',
-    };
-    final Map<String, IconData> mapIcon = {
-      'Image Classification': Icons.person,
-      'Object Detection': Icons.person_add,
-      'Pose Estimation': Icons.directions_walk,
-    };
-
-    String subtitle = "";
-    if(mapSubtitle.keys.contains(title)){
-      subtitle = mapSubtitle[title]!;
-    }
-    IconData leading = Icons.image_search;
-    if(mapIcon.keys.contains(title)){
-      leading = mapIcon[title]!;
-    }
-
-    return ListTile(
-      visualDensity: VisualDensity(vertical:-2,horizontal: -4),
-      title: Text(title,style: TextStyle(fontSize: fontSize),),
-      subtitle: Text(subtitle),
-      contentPadding: EdgeInsets.only(left: leftPadding),
-      minLeadingWidth: minLeadingWidth,
-      leading: Icon(leading),
-      trailing: Icon(trailing),
-      onTap: (){
-
-      },
-    );
-  }
-}
+import 'package:mlapps/Template/customWidget.dart';
+import 'package:mlapps/constant.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 //Header
 class CustomHeaderTilte extends StatelessWidget {
@@ -140,89 +46,164 @@ class CustomHeaderTilte extends StatelessWidget {
   }
 }
 
-class FeatureBox extends StatelessWidget {
-  const FeatureBox({
+class CustomFeatureBox extends StatelessWidget {
+  const CustomFeatureBox({
     Key? key,
-    this.size = 100,
+    this.height = 140,
+    required this.width,
+    this.title = 'Image Generative',
+    this.foreColor = Colors.white,
+    this.colorBackground = Colors.white,
   }) : super(key: key);
 
-  final double size;
-
+  final double height;
+  final double width;
+  final String title;
+  final Color colorBackground;
+  final Color foreColor;
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: size,
-      height: size,
+      width: width,
+      height: height,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+                title,
+              style: GoogleFonts.lato(
+                fontSize: 16,
+                color: foreColor
+              ),
+            ),
+          ),
+          Expanded(
+            child: Image.asset(
+                functionList[title]!,
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+          SizedBox(height: 10),
+        ],
+      ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        boxShadow: [
-          BoxShadow(
-            offset: Offset(4,4),
-            blurRadius: 20,
-            color: Color.fromRGBO(173, 173, 173, 100)
-          )
-        ]
+        color: colorBackground,
+        borderRadius: BorderRadius.all(
+          Radius.circular(12)
+        ),
       ),
     );
   }
 }
 
-class FeatureLayout extends StatefulWidget {
+
+class FeatureLayout extends StatelessWidget {
   const FeatureLayout({
     Key? key,
     required this.title,
   }) : super(key: key);
   final String title;
-  @override
-  State<FeatureLayout> createState() => _FeatureLayoutState();
-}
 
-class _FeatureLayoutState extends State<FeatureLayout> {
-  final mywidgetkey = GlobalKey();
-  Size textSize;
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) => getSizeAndPosition());
-  }
-  getSizeAndPosition() {
-    RenderObject? _cardBox = mywidgetkey.currentContext?.findRenderObject();
-    textSize = _cardBox.;
-    setState(() {});
-  }
   @override
   Widget build(BuildContext context) {
-    return Row(
+    Size size = MediaQuery.of(context).size;
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 20),
+          padding: const EdgeInsets.fromLTRB(25, 25, 20, 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("",
-                key: mywidgetkey,
-                style: GoogleFonts.lato(
-                  fontSize: 20,
-                  color: Colors.white,
-                ),
-              ),
-
+              Text(title,style: headerStyle1,),
               Container(
-                height: 5,
+                height: 4,
                 color: Colors.orange,
+                width: 100,
               )
             ],
-
           ),
         ),
-        Column(
-          children: [],
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: [
+                  CustomFeatureBox(width: size.width*0.4,foreColor: Colors.black),
+                  SizedBox(height: 20,),
+                  CustomFeatureBox(width: size.width*0.4,title: "Motion Tracking",foreColor: Colors.white,colorBackground: Color.fromRGBO(235, 90, 51, 1),),
+                ],
+              ),
+              Column(
+                children: [
+                  CustomFeatureBox(width: size.width*0.4,title: "Object Detection",colorBackground: Color.fromRGBO(19, 219, 176,1),foreColor: Colors.white),
+                  SizedBox(height: 20,),
+                  CustomFeatureBox(width: size.width*0.4,foreColor: Colors.white,title: "Face Recognition",colorBackground: Color.fromRGBO(7, 78, 169, 1),),
+                ],
+              ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+        )
+
+      ],
+    );
+
+
+  }
+}
+
+class HorizontalFeatureLayout extends StatelessWidget {
+  const HorizontalFeatureLayout({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(25, 25, 20, 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title,style: headerStyle1,),
+              Container(
+                height: 4,
+                color: Colors.orange,
+                width: 100,
+              )
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              HorizontalFeatureBox(),
+              HorizontalFeatureBox(),
+              HorizontalFeatureBox(),
+              HorizontalFeatureBox(),
+
+            ],
+          ),
         )
       ],
     );
   }
 }
+
+
+
+
 
 
 

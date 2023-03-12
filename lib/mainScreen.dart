@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'mainScreenDrawer.dart';
 import 'mainScreenComponent.dart';
@@ -10,6 +11,7 @@ class application extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        drawerEdgeDragWidth: 60,
         drawer: CustomDrawer(),
         appBar: CustomAppBar(),
         body: mainScreen(),
