@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mlapps/Template/customWidget.dart';
@@ -80,7 +83,7 @@ class CustomFeatureBox extends StatelessWidget {
           ),
           Expanded(
             child: Image.asset(
-                functionList[title]!,
+                visionList[title]!,
               fit: BoxFit.fitHeight,
             ),
           ),
@@ -112,7 +115,7 @@ class FeatureLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(25, 25, 20, 10),
+          padding: const EdgeInsets.only(left: 25, right: 25, top: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -125,8 +128,9 @@ class FeatureLayout extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(height: 20,),
         Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.only(left: 25, right: 25),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,8 +152,6 @@ class FeatureLayout extends StatelessWidget {
             ],
           ),
         ),
-        SingleChildScrollView(
-        )
 
       ],
     );
@@ -170,7 +172,7 @@ class HorizontalFeatureLayout extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(25, 25, 20, 10),
+          padding: const EdgeInsets.fromLTRB(25, 30, 25, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -183,17 +185,23 @@ class HorizontalFeatureLayout extends StatelessWidget {
             ],
           ),
         ),
-        SingleChildScrollView(
+        SizedBox(height: 20,),
+        Padding(
+          padding: EdgeInsets.only(left: 15,right: 15,bottom: 20),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                HorizontalFeatureBox(colorBackground: Color.fromRGBO(143, 217, 255, 1),),
+                SizedBox(width: 10,),
+                HorizontalFeatureBox(title: "Chatbot",),
+                SizedBox(width: 10,),
+                HorizontalFeatureBox(title: "Speech2Text",colorBackground: Color.fromRGBO(232, 78, 28, 1)),
+                SizedBox(width: 10,),
+                HorizontalFeatureBox(title: "Text2Image",),
 
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              HorizontalFeatureBox(),
-              HorizontalFeatureBox(),
-              HorizontalFeatureBox(),
-              HorizontalFeatureBox(),
-
-            ],
+              ],
+            ),
           ),
         )
       ],

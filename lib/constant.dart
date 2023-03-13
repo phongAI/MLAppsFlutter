@@ -15,12 +15,19 @@ final headerStyle1 = GoogleFonts.lato(
 );
 final textStyle1 = GoogleFonts.lato(
   color: Colors.black,
-  fontSize: 10,
+  fontSize: 14,
 
 );
-const functionList = {
+const visionList = {
   "Image Generative":"$defaultImageLink/image_generative.png",
   "Object Detection":"$defaultImageLink/object_detection.png",
   "Face Recognition":"$defaultImageLink/face_recognition.gif",
   "Motion Tracking":"$defaultImageLink/motion_tracking.gif",
+};
+
+const nlpList = {
+  "Question Answering":"$defaultImageLink/question_answering.png",
+  "Chatbot":"$defaultImageLink/Chatbot.png",
+  "Text2Image":"$defaultImageLink/Text2Image.png",
+  "Speech2Text":"$defaultImageLink/Speech2Text.png",
 };

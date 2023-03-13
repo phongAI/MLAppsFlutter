@@ -11,7 +11,7 @@ class application extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        drawerEdgeDragWidth: 60,
+        drawerEdgeDragWidth: 0,
         drawer: CustomDrawer(),
         appBar: CustomAppBar(),
         body: mainScreen(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mlapps/constant.dart';
 
 
 //Text with Icon
@@ -101,17 +102,41 @@ class TemplateListTile extends StatelessWidget {
 }
 
 class HorizontalFeatureBox extends StatelessWidget {
-  const HorizontalFeatureBox({Key? key}) : super(key: key);
+  const HorizontalFeatureBox({
+    Key? key,
+    this.size = 130,
+    this.title = "Question Answering",
+    this.colorBackground = Colors.white,
+  }) : super(key: key);
+  final double size;
+  final String title;
+  final Color colorBackground;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 200,
-        height: 200,
-        decoration: BoxDecoration(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20)),
-          color: Colors.white
-        ),
+          color: colorBackground
+      ),
+      child: Column(
+        children: [
+          SizedBox(height: size*0.05,),
+          Expanded(
+            child: Container(
+              child: Image.asset(nlpList[title]!,
+                fit: BoxFit.fitHeight,
+              ),
+
+            ),
+          ),
+          Text(title,textAlign: TextAlign.center,
+          style: textStyle1,),
+          SizedBox(height: size*0.1,),
+        ],
+      ),
     );
   }
 }
